@@ -22,7 +22,7 @@ EOF
   }
 }
 resource "aws_iam_role" "test_role_cloud" {
-  name = "test_role"
+  name = "test_role_Cloud"
 
   assume_role_policy = <<EOF
 {
