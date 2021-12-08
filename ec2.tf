@@ -17,6 +17,7 @@ resource "aws_instance" "role-test" {
   sudo service docker start
   sudo usermod -a -G docker ec2-user
   docker build -t mynginxterra .
+  docker run --name foo -d -p 8080:80 mynginx
   aws s3 cp s3://s3-terraform-bucket-srk/index.html /home/ec2-user
   
   EOL
