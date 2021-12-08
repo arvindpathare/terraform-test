@@ -8,15 +8,17 @@ resource "aws_instance" "role-test" {
 
   sudo yum update -y
   sudo yum install -y awslogs
+  sudo yum install -y git
+  git clone https://github.com/arvindpathare/terraform-test.git
   sudo systemctl start awslogsd
   sudo systemctl enable awslogsd.service
   sudo amazon-linux-extras install docker -y
   sudo yum install docker -y 
   sudo service docker start
   sudo usermod -a -G docker ec2-user
-  docker info
+  docker build -t mynginxterra .
   aws s3 cp s3://s3-terraform-bucket-srk/index.html /home/ec2-user
-  docker run -v /home/ec2-user:/usr/share/nginx/html:ro -p 8080:80 -d nginx
+  
   EOL
   tags = {
     Name = "Terratest"
